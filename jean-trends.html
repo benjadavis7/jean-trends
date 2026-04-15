@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Years of Jean Trends</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --indigo: #2a3f7e; --indigo-light: #e8ecf8;
+    --purple: #534ab7; --purple-light: #eeedfe;
+    --teal: #0f6e56; --teal-light: #e1f5ee;
+    --amber: #ba7517; --amber-light: #faeeda;
+    --coral: #993c1d; --coral-light: #faece7;
+    --green: #3b6d11; --green-light: #eaf3de;
+    --pink: #993556; --pink-light: #fbeaf0;
+    --blue: #185fa5; --blue-light: #e6f1fb;
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: #fafaf8;
+    color: #1a1a1a;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: #0f0e1a;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .hero-glow {
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(83,74,183,0.35) 0%, transparent 70%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 7vw, 72px);
+    color: #fff;
+    position: relative; z-index: 1;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+  .hero h1 em { color: #a89cf7; font-style: normal; }
+  .hero-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+    position: relative; z-index: 1;
+  }
+  .hero-scroll {
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    position: relative; z-index: 1;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  /* ── TRIVIA BAR ── */
+  .trivia {
+    background: #f7f3ff;
+    border-bottom: 3px solid var(--purple);
+    padding: 1rem 2rem;
+    text-align: center;
+    font-size: 14px;
+    color: #3c3489;
+  }
+  .trivia strong { font-weight: 500; }
+
+  /* ── DECADE SECTIONS ── */
+  .decades-wrapper { }
+
+  .decade-section {
+    padding: 4rem 2rem;
+    border-bottom: 3px solid;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .decade-section.visible { opacity: 1; transform: translateY(0); }
+
+  .decade-section:nth-child(1) { border-color: var(--indigo); background: var(--indigo-light); }
+  .decade-section:nth-child(2) { border-color: var(--purple); background: var(--purple-light); }
+  .decade-section:nth-child(3) { border-color: var(--teal); background: var(--teal-light); }
+  .decade-section:nth-child(4) { border-color: var(--amber); background: var(--amber-light); }
+  .decade-section:nth-child(5) { border-color: var(--coral); background: var(--coral-light); }
+  .decade-section:nth-child(6) { border-color: var(--green); background: var(--green-light); }
+  .decade-section:nth-child(7) { border-color: var(--pink); background: var(--pink-light); }
+  .decade-section:nth-child(8) { border-color: var(--blue); background: var(--blue-light); }
+
+  .decade-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 680px) { .decade-inner { grid-template-columns: 1fr; } }
+
+  .decade-num {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    opacity: 0.5;
+    margin-bottom: 0.4rem;
+  }
+  .decade-year {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .decade-name {
+    font-size: 17px;
+    font-weight: 400;
+    opacity: 0.75;
+    margin-bottom: 1.25rem;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 13px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.03em;
+  }
+  .fact-list { list-style: none; margin-bottom: 1.5rem; }
+  .fact-list li {
+    font-size: 14px;
+    line-height: 1.75;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    display: flex;
+    gap: 10px;
+    color: rgba(0,0,0,0.72);
+  }
+  .fact-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .chips-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: rgba(0,0,0,0.4);
+    margin-bottom: 6px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip {
+    font-size: 12px;
+    padding: 4px 11px;
+    border-radius: 99px;
+    background: rgba(0,0,0,0.07);
+    color: rgba(0,0,0,0.6);
+  }
+
+  /* ── IMAGE CARD ── */
+  .img-card {
+    background: #fff;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid rgba(0,0,0,0.1);
+    transition: border-color 0.2s;
+  }
+  .img-card:hover { border-color: rgba(0,0,0,0.2); }
+  .img-drop-zone {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: repeating-linear-gradient(45deg, #f9f9f9, #f9f9f9 5px, #f2f2f2 5px, #f2f2f2 10px);
+    transition: background 0.2s;
+  }
+  .img-drop-zone:hover { background: #ebebeb; }
+  .img-drop-zone.has-image { background: none; }
+  .img-drop-zone.drag-active { background: #e8f0ff; outline: 2px dashed var(--blue); }
+  .img-drop-zone img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .img-drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+  .drop-icon {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: #e4e4e4;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1; pointer-events: none;
+    font-size: 18px;
+  }
+  .drop-text { font-size: 12px; color: #bbb; text-align: center; z-index: 1; pointer-events: none; }
+  .img-caption {
+    padding: 0.65rem 0.85rem;
+    font-size: 12px;
+    color: #999;
+    border-top: 1px solid #eee;
+    background: #fafafa;
+    font-style: italic;
+  }
+
+  /* ── DIVIDER ── */
+  .divider { height: 6px; background: linear-gradient(90deg, #534ab7, #d85a30, #0f6e56, #ba7517, #993556); }
+
+  /* ── MIXER SECTION ── */
+  .mixer-section {
+    background: #fff;
+    border-top: 3px solid var(--purple);
+    padding: 4rem 2rem;
+  }
+  .mixer-inner { max-width: 960px; margin: 0 auto; }
+  .mixer-eyebrow {
+    display: inline-block;
+    background: #eeedfe;
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border-radius: 99px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(83,74,183,0.2);
+  }
+  .mixer-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 52px);
+    margin-bottom: 0.5rem;
+    color: #0f0e1a;
+  }
+  .mixer-sub {
+    font-size: 15px;
+    color: #666;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+
+  .dnd-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .dnd-layout { grid-template-columns: 1fr; } }
+
+  .wardrobe-col h3 {
+    font-size: 11px;
+    font-weight: 500;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .clothing-items { display: flex; flex-direction: column; gap: 7px; }
+  .clothing-item {
+    background: #f5f5f3;
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 9px 12px;
+    cursor: grab;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    transition: background 0.12s, transform 0.1s, box-shadow 0.12s;
+    user-select: none;
+  }
+  .clothing-item:hover { background: #ececea; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .clothing-item:active { cursor: grabbing; transform: scale(0.97); }
+  .clothing-item.dragging { opacity: 0.35; }
+  .item-swatch { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; border: 1px solid rgba(0,0,0,0.1); }
+  .item-era { font-size: 10px; color: #bbb; margin-left: auto; white-space: nowrap; }
+
+  .model-zone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .model-canvas {
+    width: 240px;
+    height: 400px;
+    border-radius: 20px;
+    border: 2px dashed #d0d0cc;
+    position: relative;
+    overflow: hidden;
+    background: #f9f9f7;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .model-canvas.drag-over { border-color: var(--purple); background: #f0effe; }
+  .model-canvas svg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+  .model-hint {
+    position: absolute;
+    bottom: 20px; left: 0; right: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--purple);
+    color: #fff;
+    border: none;
+    padding: 10px 26px;
+    border-radius: 99px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-primary:active { transform: scale(0.97); }
+
+  .btn-ghost {
+    background: transparent;
+    color: #999;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    border-radius: 99px;
+    font-size: 13px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .btn-ghost:hover { color: #333; border-color: #aaa; }
+
+  .outfit-summary {
+    background: #f5f5f3;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    padding: 1rem;
+    font-size: 13px;
+    color: #777;
+    min-height: 70px;
+    line-height: 1.75;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+  }
+  .outfit-summary strong { color: #1a1a1a; font-weight: 500; }
+  .era-mix { font-size: 11px; color: #bbb; margin-top: 4px; }
+
+  .era-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+    justify-content: center;
+  }
+  .era-pill {
+    font-size: 13px;
+    padding: 6px 18px;
+    border-radius: 99px;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: all 0.15s;
+  }
+  .era-pill:hover { background: #f0effe; color: var(--purple); border-color: var(--purple); }
+  .era-pill.on { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #0f0e1a;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    padding: 2rem;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .footer strong { color: rgba(255,255,255,0.6); font-weight: 500; }
+
+  /* ── STICKY DECADE NAV ── */
+  .decade-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e8e8e4;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .decade-nav::-webkit-scrollbar { display: none; }
+  .decade-nav-btn {
+    flex-shrink: 0;
+    padding: 11px 16px;
+    font-size: 12px;
+    font-family: var(--font-body);
+    color: #999;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .decade-nav-btn:hover { color: #333; }
+  .decade-nav-btn.active { color: var(--purple); border-bottom-color: var(--purple); }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Fashion history · 1900s — 2020s</div>
+  <h1>100 Years of<br><em>Jean Trends</em></h1>
+  <p class="hero-sub">From mining sites to runways — explore how denim evolved through every decade, then build your own 2020s look.</p>
+  <div class="hero-scroll">↓ Scroll to explore</div>
+</section>
+
+<!-- TRIVIA -->
+<div class="trivia">
+  <strong>Did you know?</strong> The term "jeans" only became popular in the <strong>1950s</strong> — before that, they were simply called <em>waist overalls</em>.
+</div>
+
+<!-- STICKY NAV -->
+<nav class="decade-nav" id="decadeNav"></nav>
+
+<!-- DECADES -->
+<div class="decades-wrapper" id="decadesContainer"></div>
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+<!-- MIXER -->
+<section class="mixer-section" id="mixer">
+  <div class="mixer-inner">
+    <div class="mixer-eyebrow">2020s · No single trend</div>
+    <h2 class="mixer-title">Build your look</h2>
+    <p class="mixer-sub">The 2020s have no dominant silhouette — just intentional era mixing. Drag clothing items onto the model, or use the decade presets below.</p>
+
+    <div class="dnd-layout">
+      <div class="wardrobe-col">
+        <h3>Tops</h3>
+        <div class="clothing-items" id="topItems"></div>
+      </div>
+
+      <div class="model-zone">
+        <div class="model-canvas" id="modelCanvas">
+          <svg viewBox="0 0 240 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- head -->
+            <circle cx="120" cy="52" r="30" fill="#d4a574"/>
+            <ellipse cx="120" cy="48" rx="15" ry="18" fill="#c49060"/>
+            <!-- torso -->
+            <rect x="76" y="80" width="88" height="88" rx="10" fill="#aaaaaa" id="mTop"/>
+            <!-- sleeves -->
+            <rect x="38" y="86" width="40" height="68" rx="7" fill="#aaaaaa" id="mTopL"/>
+            <rect x="162" y="86" width="40" height="68" rx="7" fill="#aaaaaa" id="mTopR"/>
+            <!-- jeans -->
+            <rect x="84" y="166" width="72" height="100" rx="8" fill="#4a6fa5" id="mJeans"/>
+            <!-- legs -->
+            <rect x="84" y="260" width="31" height="88" rx="5" fill="#3a5f95" id="mLegL"/>
+            <rect x="125" y="260" width="31" height="88" rx="5" fill="#3a5f95" id="mLegR"/>
+            <!-- shoes -->
+            <rect x="78" y="338" width="40" height="20" rx="5" fill="#222" id="mShoeL"/>
+            <rect x="122" y="338" width="40" height="20" rx="5" fill="#222" id="mShoeR"/>
+          </svg>
+          <div class="model-hint" id="modelHint">Drag items here</div>
+        </div>
+        <button class="btn-primary" onclick="randomOutfit()">Randomize outfit</button>
+        <button class="btn-ghost" onclick="clearOutfit()" style="margin-top:6px">Clear look</button>
+        <div class="outfit-summary" id="outfitSummary">Drag items onto the model to build your outfit.</div>
+      </div>
+
+      <div class="wardrobe-col">
+        <h3>Bottoms &amp; shoes</h3>
+        <div class="clothing-items" id="bottomItems"></div>
+      </div>
+    </div>
+
+    <div class="era-filter" id="eraFilter">
+      <button class="era-pill" onclick="presetEra('50s',this)">1950s</button>
+      <button class="era-pill" onclick="presetEra('70s',this)">1970s</button>
+      <button class="era-pill" onclick="presetEra('90s',this)">1990s</button>
+      <button class="era-pill" onclick="presetEra('2000s',this)">Y2K</button>
+      <button class="era-pill" onclick="presetEra('2010s',this)">2010s</button>
+      <button class="era-pill" onclick="presetEra('2020s',this)">2020s</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>100 Years of Jean Trends</strong><br>
+  Sources: PBS, Byrdie, Hawthorn
+</footer>
+
+<script>
+const DECADES = [
+  {
+    id:'1900s', year:'1900s–40s', name:'Workwear roots', badge:'Function first',
+    badgeStyle:'background:#2a3f7e18;color:#2a3f7e;border:1px solid #2a3f7e30;',
+    yearColor:'#2a3f7e', dotColor:'#2a3f7e',
+    facts:[
+      'Heavy straight-leg denim built for miners, cowboys, and laborers',
+      'Dark indigo wash with thick durable fabric — function above all else',
+      'Worn with flannel shirts, suspenders, and heavy work boots',
+      'Fashion was never the goal; surviving hard labor was everything',
+    ],
+    chips:['Straight-leg','Dark indigo','High rise','Suspenders','Work boots'],
+    caption:'1900s–1940s workwear silhouette',
+  },
+  {
+    id:'1950s', year:'1950s', name:'Rebellion and youth culture', badge:'James Dean era',
+    badgeStyle:'background:#534ab718;color:#534ab7;border:1px solid #534ab730;',
+    yearColor:'#534ab7', dotColor:'#534ab7',
+    facts:[
+      'Slim straight cuts popularized by Hollywood icons like James Dean',
+      'Cuffed hems became the defining styling detail of the decade',
+      'Paired with white tees, leather jackets, boots and loafers',
+      'Jeans crossed from workwear into a symbol of youth rebellion',
+    ],
+    chips:['Slim straight','Medium indigo','Cuffed hem','White tee','Leather jacket'],
+    caption:'1950s rebel silhouette',
+  },
+  {
+    id:'1960s', year:'1960s', name:'Counterculture and self-expression', badge:'Peace & patches',
+    badgeStyle:'background:#0f6e5618;color:#0f6e56;border:1px solid #0f6e5630;',
+    yearColor:'#0f6e56', dotColor:'#0f6e56',
+    facts:[
+      'Slim cuts remained but started flaring at the hem toward the late 60s',
+      'Embroidered, patched, and painted denim reflected personal identity',
+      'Styled with tie-dye tops, peasant blouses, and sandals',
+      'Denim became a canvas for political and cultural expression',
+    ],
+    chips:['Slim + slight flare','Patched denim','Mid rise','Tie-dye','Sandals'],
+    caption:'1960s counterculture silhouette',
+  },
+  {
+    id:'1970s', year:'1970s', name:'The flare era', badge:'Bell-bottoms reign',
+    badgeStyle:'background:#ba751718;color:#ba7517;border:1px solid #ba751730;',
+    yearColor:'#ba7517', dotColor:'#ba7517',
+    facts:[
+      'Bell-bottoms and wide-leg flares defined the decade\'s entire silhouette',
+      'High-rise waists, bold washes, and structured denim were standard',
+      'Paired with platform shoes, fringe jackets, and patterned tops',
+      'Denim-on-denim became a celebrated and widely accepted combination',
+    ],
+    chips:['Bell-bottom','Bold wash','High rise','Platform shoes','Fringe jacket'],
+    caption:'1970s flare era silhouette',
+  },
+  {
+    id:'1980s', year:'1980s', name:'Designer denim and bold experimentation', badge:'Calvin Klein era',
+    badgeStyle:'background:#993c1d18;color:#993c1d;border:1px solid #993c1d30;',
+    yearColor:'#993c1d', dotColor:'#d85a30',
+    facts:[
+      'Acid wash, stonewash, and distressed finishes became mainstream overnight',
+      'Tapered cuts and mom jeans emerged alongside form-fitting styles',
+      'Styled with oversized blazers, graphic tees, and statement accessories',
+      'Calvin Klein and Jordache elevated denim into a luxury status symbol',
+    ],
+    chips:['Tapered','Acid wash','High rise','Mom jean','Oversized blazer'],
+    caption:'1980s designer denim silhouette',
+  },
+  {
+    id:'1990s', year:'1990s', name:'Grunge, minimalism, and relaxed fits', badge:'Baggy is back',
+    badgeStyle:'background:#3b6d1118;color:#3b6d11;border:1px solid #3b6d1130;',
+    yearColor:'#3b6d11', dotColor:'#3b6d11',
+    facts:[
+      'Baggy, wide-leg, and boyfriend cuts replaced the fitted 80s silhouette',
+      'Medium washes and relaxed proportions defined the decade\'s look',
+      'Paired with flannel shirts, crop tops, chunky sneakers, and combat boots',
+      'Grunge and minimalism pulled denim in two distinct directions simultaneously',
+    ],
+    chips:['Baggy','Medium wash','Mid rise','Flannel','Combat boots'],
+    caption:'1990s grunge silhouette',
+  },
+  {
+    id:'2000s', year:'2000s', name:'Low-rise and the skinny jean era', badge:'Y2K maximalism',
+    badgeStyle:'background:#99355618;color:#993556;border:1px solid #99355630;',
+    yearColor:'#993556', dotColor:'#d4537e',
+    facts:[
+      'Ultra low-rise waists and bootcut styles dominated the early 2000s',
+      'Skinny jeans emerged mid-decade and quickly took over everything',
+      'Paired with cropped jackets, heeled boots, and embellished tops',
+      'Rhinestone detailing and embroidery defined Y2K maximalist styling',
+    ],
+    chips:['Skinny','Dark rinse','Ultra low rise','Bootcut','Heeled boots'],
+    caption:'2000s Y2K skinny silhouette',
+  },
+  {
+    id:'2010s', year:'2010s', name:'High-rise returns and streetwear influence', badge:'Streetwear era',
+    badgeStyle:'background:#185fa518;color:#185fa5;border:1px solid #185fa530;',
+    yearColor:'#185fa5', dotColor:'#185fa5',
+    facts:[
+      'High-rise waists made a full comeback, largely pushing out low-rise',
+      'Skinny jeans held on while raw-hem and straight-leg cuts grew steadily',
+      'Styled with oversized hoodies, cropped sweatshirts, and clean sneakers',
+      'Streetwear culture pushed relaxed comfortable proportions into mainstream',
+    ],
+    chips:['Skinny / straight','Black or light','High rise','Raw hem','Oversized hoodie'],
+    caption:'2010s streetwear silhouette',
+  },
+];
+
+function makeImgCard(d, i) {
+  return `
+    <div class="img-card">
+      <div class="img-drop-zone" id="zone-${i}"
+        ondragover="event.preventDefault();this.classList.add('drag-active')"
+        ondragleave="this.classList.remove('drag-active')"
+        ondrop="handleImgDrop(event,${i})">
+        <div class="drop-icon">+</div>
+        <div class="drop-text">Click or drop<br>a photo here</div>
+        <input type="file" accept="image/*" onchange="loadImg(event,${i})">
+      </div>
+      <div class="img-caption">${d.caption}</div>
+    </div>`;
+}
+
+function loadImg(e, i) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => setZoneImage(i, ev.target.result);
+  reader.readAsDataURL(file);
+}
+
+function handleImgDrop(e, i) {
+  e.preventDefault();
+  const zone = document.getElementById('zone-' + i);
+  zone.classList.remove('drag-active');
+  const file = e.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => setZoneImage(i, ev.target.result);
+  reader.readAsDataURL(file);
+}
+
+function setZoneImage(i, src) {
+  const zone = document.getElementById('zone-' + i);
+  zone.classList.add('has-image');
+  let img = zone.querySelector('img');
+  if (!img) { img = document.createElement('img'); zone.insertBefore(img, zone.firstChild); }
+  img.src = src;
+  zone.querySelector('.drop-icon').style.display = 'none';
+  zone.querySelector('.drop-text').style.display = 'none';
+}
+
+function buildDecades() {
+  const container = document.getElementById('decadesContainer');
+  const nav = document.getElementById('decadeNav');
+
+  DECADES.forEach((d, i) => {
+    // nav button
+    const nb = document.createElement('button');
+    nb.className = 'decade-nav-btn';
+    nb.textContent = d.year;
+    nb.dataset.idx = i;
+    nb.onclick = () => document.getElementById('decade-' + i).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    nav.appendChild(nb);
+
+    // section
+    const sec = document.createElement('section');
+    sec.className = 'decade-section';
+    sec.id = 'decade-' + i;
+    sec.innerHTML = `
+      <div class="decade-inner">
+        <div>
+          <div class="decade-num" style="color:${d.yearColor}">Decade ${i+1} of 8</div>
+          <div class="decade-year" style="color:${d.yearColor}">${d.year}</div>
+          <div class="decade-name">${d.name}</div>
+          <span class="badge" style="${d.badgeStyle}">${d.badge}</span>
+          <ul class="fact-list">
+            ${d.facts.map(f => `<li><span class="fact-dot" style="background:${d.dotColor}"></span><span>${f}</span></li>`).join('')}
+          </ul>
+          <div class="chips-label">Outfit breakdown</div>
+          <div class="chips">${d.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>
+        </div>
+        ${makeImgCard(d, i)}
+      </div>`;
+    container.appendChild(sec);
+  });
+
+  // mixer nav btn
+  const mb = document.createElement('button');
+  mb.className = 'decade-nav-btn';
+  mb.textContent = '2020s ✦';
+  mb.onclick = () => document.getElementById('mixer').scrollIntoView({ behavior: 'smooth' });
+  nav.appendChild(mb);
+}
+
+// ── SCROLL OBSERVER ──
+function initObserver() {
+  const sections = document.querySelectorAll('.decade-section');
+  const navBtns = document.querySelectorAll('.decade-nav-btn');
+
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+
+  const activeObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navBtns.forEach(b => b.classList.remove('active'));
+        const idx = [...sections].indexOf(e.target);
+        if (idx >= 0 && navBtns[idx]) navBtns[idx].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -40% 0px' });
+
+  sections.forEach(s => { revealObs.observe(s); activeObs.observe(s); });
+}
+
+// ── WARDROBE DATA ──
+const TOPS = [
+  {label:'Flannel shirt', color:'#8B3a3a', era:'1900s / 90s'},
+  {label:'White tee', color:'#d8d8d8', era:'1950s'},
+  {label:'Tie-dye top', color:'#7a55aa', era:'1960s–70s'},
+  {label:'Graphic tee', color:'#e07a30', era:'1980s–2000s'},
+  {label:'Oversized hoodie', color:'#4a4a7a', era:'2010s–20s'},
+  {label:'Crop top', color:'#d4537e', era:'1990s–2000s'},
+  {label:'Fringe jacket', color:'#ba7517', era:'1970s'},
+  {label:'Leather jacket', color:'#1a1a1a', era:'1950s'},
+];
+const BOTTOMS = [
+  {label:'Wide-leg jeans', color:'#2a5a9a', era:'1970s / 2020s', part:'jeans'},
+  {label:'Skinny jeans', color:'#1a2a5a', era:'2000s–10s', part:'jeans'},
+  {label:'Bell-bottoms', color:'#1e4a8a', era:'1970s', part:'jeans'},
+  {label:'Baggy jeans', color:'#3a6a9a', era:'1990s / 2020s', part:'jeans'},
+  {label:'Mom jeans', color:'#8ca8c8', era:'1980s', part:'jeans'},
+  {label:'Work boots', color:'#4a2a10', era:'1900s', part:'shoes'},
+  {label:'Platform shoes', color:'#8a2a6a', era:'1970s', part:'shoes'},
+  {label:'Combat boots', color:'#2a2a2a', era:'1990s', part:'shoes'},
+  {label:'Chunky sneakers', color:'#b0b09a', era:'1990s–2010s', part:'shoes'},
+  {label:'Clean sneakers', color:'#dde4ec', era:'2010s–20s', part:'shoes'},
+];
+
+let worn = { top: null, jeans: null, shoes: null };
+let dragData = null;
+
+function buildWardrobe() {
+  const tEl = document.getElementById('topItems');
+  const bEl = document.getElementById('bottomItems');
+  TOPS.forEach(item => tEl.appendChild(makeClothingEl(item, 'top')));
+  BOTTOMS.forEach(item => bEl.appendChild(makeClothingEl(item, item.part)));
+}
+
+function makeClothingEl(item, part) {
+  const el = document.createElement('div');
+  el.className = 'clothing-item';
+  el.draggable = true;
+  el.innerHTML = `<span class="item-swatch" style="background:${item.color}"></span><span style="flex:1">${item.label}</span><span class="item-era">${item.era}</span>`;
+  el.addEventListener('dragstart', e => {
+    dragData = { label: item.label, era: item.era, color: item.color, part };
+    el.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'copy';
+  });
+  el.addEventListener('dragend', () => el.classList.remove('dragging'));
+  // touch support
+  el.addEventListener('touchstart', e => {
+    dragData = { label: item.label, era: item.era, color: item.color, part };
+  }, { passive: true });
+  return el;
+}
+
+const canvas = document.getElementById('modelCanvas');
+canvas.addEventListener('dragover', e => { e.preventDefault(); canvas.classList.add('drag-over'); });
+canvas.addEventListener('dragleave', () => canvas.classList.remove('drag-over'));
+canvas.addEventListener('drop', e => {
+  e.preventDefault(); canvas.classList.remove('drag-over');
+  if (dragData) { applyItem(dragData); dragData = null; }
+});
+
+function applyItem(item) {
+  const svg = canvas.querySelector('svg');
+  if (item.part === 'top') {
+    worn.top = item;
+    ['mTop','mTopL','mTopR'].forEach(id => svg.getElementById(id)?.setAttribute('fill', item.color));
+  } else if (item.part === 'jeans') {
+    worn.jeans = item;
+    ['mJeans','mLegL','mLegR'].forEach(id => svg.getElementById(id)?.setAttribute('fill', item.color));
+  } else if (item.part === 'shoes') {
+    worn.shoes = item;
+    ['mShoeL','mShoeR'].forEach(id => svg.getElementById(id)?.setAttribute('fill', item.color));
+  }
+  document.getElementById('modelHint').style.opacity = '0';
+  updateSummary();
+}
+
+function updateSummary() {
+  const parts = [];
+  if (worn.top) parts.push(`<strong>${worn.top.label}</strong>`);
+  if (worn.jeans) parts.push(`<strong>${worn.jeans.label}</strong>`);
+  if (worn.shoes) parts.push(`<strong>${worn.shoes.label}</strong>`);
+  const el = document.getElementById('outfitSummary');
+  if (!parts.length) { el.innerHTML = 'Drag items onto the model to build your outfit.'; return; }
+  const eras = [...new Set([worn.top?.era, worn.jeans?.era, worn.shoes?.era].filter(Boolean).flatMap(s => s.split(' / ')))];
+  el.innerHTML = parts.join(' + ') + (eras.length > 1 ? `<div class="era-mix">Era mix: ${eras.join(', ')}</div>` : '');
+}
+
+function clearOutfit() {
+  worn = { top: null, jeans: null, shoes: null };
+  const svg = canvas.querySelector('svg');
+  ['mTop','mTopL','mTopR'].forEach(id => svg.getElementById(id)?.setAttribute('fill','#aaaaaa'));
+  ['mJeans','mLegL','mLegR'].forEach(id => svg.getElementById(id)?.setAttribute('fill','#4a6fa5'));
+  ['mShoeL','mShoeR'].forEach(id => svg.getElementById(id)?.setAttribute('fill','#222'));
+  document.getElementById('modelHint').style.opacity = '1';
+  document.getElementById('outfitSummary').innerHTML = 'Drag items onto the model to build your outfit.';
+  document.querySelectorAll('.era-pill').forEach(p => p.classList.remove('on'));
+}
+
+const PRESETS = {
+  '50s':  { top:'Leather jacket', jeans:'Skinny jeans', shoes:'Work boots' },
+  '70s':  { top:'Fringe jacket',  jeans:'Bell-bottoms', shoes:'Platform shoes' },
+  '90s':  { top:'Flannel shirt',  jeans:'Baggy jeans',  shoes:'Combat boots' },
+  '2000s':{ top:'Crop top',       jeans:'Skinny jeans', shoes:'Chunky sneakers' },
+  '2010s':{ top:'Oversized hoodie', jeans:'Skinny jeans', shoes:'Clean sneakers' },
+  '2020s':{ top:'Oversized hoodie', jeans:'Wide-leg jeans', shoes:'Clean sneakers' },
+};
+
+function presetEra(era, btn) {
+  document.querySelectorAll('.era-pill').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  const p = PRESETS[era]; if (!p) return;
+  const top = TOPS.find(c => c.label === p.top);
+  const jeans = BOTTOMS.find(c => c.label === p.jeans);
+  const shoes = BOTTOMS.find(c => c.label === p.shoes);
+  if (top) applyItem({ ...top, part: 'top' });
+  if (jeans) applyItem({ ...jeans });
+  if (shoes) applyItem({ ...shoes });
+}
+
+function randomOutfit() {
+  document.querySelectorAll('.era-pill').forEach(p => p.classList.remove('on'));
+  const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+  applyItem({ ...pick(TOPS), part: 'top' });
+  applyItem({ ...pick(BOTTOMS.filter(c => c.part === 'jeans')) });
+  applyItem({ ...pick(BOTTOMS.filter(c => c.part === 'shoes')) });
+}
+
+// ── INIT ──
+buildDecades();
+buildWardrobe();
+initObserver();
+</script>
+</body>
+</html>
